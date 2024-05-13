@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=peera
+      - DB_PASSWORD=peera1234
+      - DB_NAME=skinx_test
+      - NODE_ENV=production
+    depends_on:
+      - postgres
+    restart: always
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./skinx-frontend/Dockerfile
+    ports:
+      - "80:4173"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: skinx_test
+      POSTGRES_USER: peera
+      POSTGRES_PASSWORD: peera1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  data_seeder:
+    build:
+      context: .
+      dockerfile: ./data/Dockerfile
+    depends_on:
+      - frontend
+    entrypoint: ["/bin/sh", "-c", "sleep 10 && python /app/seed_data.py && exit"]
+
+
+volumes:
+  postgres_data:
