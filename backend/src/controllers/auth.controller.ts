@@ -1,6 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
+import { Response } from 'express';
 import { IAuthService } from '../services/interfaces/auth.interface.service';
-import { User } from '../entities/user.entity';
 import { LoginDtoRequest, LoginDtoResponse, RegisterDtoRequest, RegisterDtoResponse } from './dto/auth.dto';
 import { validateDto } from '../utils/validate.util';
 import { TypedBodyRequest } from '../types/request.type';

@@ -1,0 +1,8 @@
+.post_card {
+  max-height: 250px;
+  overflow: hidden;
+  /* display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word; */
+}

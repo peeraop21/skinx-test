@@ -10,6 +10,7 @@ export class Post extends BaseEntity {
     @Column({ nullable: true })
     content!: string;
 
-    @Column('simple-array',{ nullable: true })
+    // @Column('simple-array',{ nullable: true})
+    @Column('text', { array: true })
     tags!: string[]
 }

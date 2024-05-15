@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer, { initialAuth } from '@/pages/authenticate/authSlice'; // Import the action creator
+import authReducer, { initialAuth } from '@/pages/authenticate/authSlice';
+import postReducer from '@/pages/post/postSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    post: postReducer,
   },
 });
 store.dispatch(initialAuth()); // Use the action creator

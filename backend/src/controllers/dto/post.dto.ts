@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsEmail, Length, IsNumber } from 'class-validator'
+import { IsNotEmpty, IsString, IsEmail, Length, IsNumber, IsArray } from 'class-validator'
 import { Post } from '../../entities/post.entity'
 
 /// Get Post
@@ -6,10 +6,41 @@ export class GetPostDtoResponse {
     post!: Post
 }
 
-/// Get All Posts
-export class GetAllPostsDtoResponse {
-    posts!: Post[]
+
+
+/// Get All Tags
+export class GetAllTagsDtoResponse {
+    tags!: string[]
 }
+
+
+
+/// Get All Posts
+export class GetPostsDtoRequest {
+
+    @IsNumber()
+    @IsNotEmpty()
+    page!: number
+
+    @IsNumber()
+    @IsNotEmpty()
+    limit!: number
+
+    keywords!: string | null
+
+    tags!: string[] | null
+
+    sortBy!: string | null
+
+    sortOrder!: "ASC" | "DESC"
+}
+
+export class GetPostsDtoResponse {
+    posts!: Post[]
+    count!: number
+}
+
+
 
 /// Create Post
 export class CreatePostDtoRequest {

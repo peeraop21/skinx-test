@@ -1,6 +1,6 @@
 import axios from 'axios'
-
-
+import { Modal, message } from 'antd';
+import { logout } from '@/services/authService';
 
 const HOSTNAME = import.meta.env.VITE_SKINX_API_URL
 
@@ -14,8 +14,6 @@ const getToken = function () {
 }
 
 export async function request(method: string, url: string, data: any, auth: boolean = false, contentType: string = 'application/json', responseType: any = null) {
-    // const dispatch = useDispatch();
-    console.log(data)
     let headers = {}
 
     if (auth) {
@@ -34,13 +32,18 @@ export async function request(method: string, url: string, data: any, auth: bool
         }
         return response
     } catch (error: any) {
-        console.log('API error:', error)
-        // if (error?.response?.status === 401 && !error?.response?.data.statusCode) {
-        //     // AuthService.logout()
-        //     // dispatch(loginFailure("Session expired, please login again"))
-        //     window.location.href = '/'
-        //     return
-        // }
-        throw error
+        console.log('API error:', error);
+        if (error.response?.status === 401 && error.response.data.message.includes('Token expired')) {
+            Modal.error({
+                title: 'Session expired, please login again',
+                afterClose: () => {
+                    logout();
+                    window.location.href = '/login'
+                }
+              });
+            return;
+        }else{
+            throw error;
+        }
     }
 }
