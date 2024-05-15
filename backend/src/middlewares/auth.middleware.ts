@@ -9,7 +9,10 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     try {
         verifyToken(token);
         next();
-    } catch (error) {
-        return res.sendStatus(403);
+    } catch (error: any) {
+        console.log(error)
+        if (error.name === 'TokenExpiredError') return res.status(401).json({ message: 'Token expired' });
+        else return res.status(403).json({ message: 'Invalid token' });
+
     }
 };

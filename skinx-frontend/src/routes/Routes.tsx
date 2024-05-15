@@ -8,7 +8,8 @@ import { Button, Result } from 'antd';
 const LoginPage = lazy(() => import('@/pages/authenticate/login/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/authenticate/register/RegisterPage'));
 
-const PostPage = lazy(() => import('@/pages/post/PostPage'));
+const PostListPage = lazy(() => import('@/pages/post/list/PostListPage'));
+const PostDetailPage = lazy(() => import('@/pages/post/detail/PostDetailPage'));
 
 const AppRoutes: React.FC = () => {
   const navigator = useNavigate();
@@ -20,7 +21,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route element={<AuthRoute allowedRoles={[ROLES.User]} />}>
-        <Route path="/" element={<PostPage />} />
+        <Route path="/" element={<PostListPage />} />
+        <Route path="/post/:id" element={<PostDetailPage />} />
       </Route>
       <Route
         path="/unauthorized"

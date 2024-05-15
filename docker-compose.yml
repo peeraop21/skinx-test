@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - DB_HOST=postgres
       - DB_USER=peera
@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: ./skinx-frontend/Dockerfile
     ports:
-      - "80:4173"
+      - "8080:4173"
     environment:
       - NODE_ENV=production
     depends_on:

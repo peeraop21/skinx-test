@@ -10,7 +10,7 @@ export class User extends BaseEntity {
   @Column()
   password!: string
 
-  @Column('simple-array', { nullable: true })
+  @Column('text', { array: true })
   roles!: string[];
 
 }

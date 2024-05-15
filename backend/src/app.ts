@@ -1,5 +1,5 @@
 
-import express from 'express';
+import express, { Router } from 'express';
 import { AuthController } from './controllers/auth.controller';
 import { UserRepository } from './repositories/user.repository';
 import { AuthService } from './services/auth.service';
@@ -46,33 +46,36 @@ createConnection(dataSourceOptions).then(async (data) => {
     router.put('/posts/:id', authenticateToken, postController.updatePost.bind(postController));
     router.delete('/posts/:id', authenticateToken, postController.deletePost.bind(postController));
 
+    // Routes Tags
+    router.get('/tags', authenticateToken, postController.getTags.bind(postController));
+
 
     app.use('/api', router);
-    app.get('/seed',async (req, res) => {
+    // app.get('/seed',async (req, res) => {
 
        
-        // let data: Post[] = [];
+    //     // let data: Post[] = [];
     
-        // if (Array.isArray(postsData)) {
-        //     await Promise.all(
-        //         postsData.map(async (postDataItem: any) => {
-        //             const post = new Post();
-        //             post.title = postDataItem.title;
-        //             post.content = postDataItem.content;
-        //             post.createdAt = postDataItem.postedAt;
-        //             post.createdBy = postDataItem.postedBy
-        //             post.tags = postDataItem.tags;
-        //             data.push(post);
-        //         }));
-        //     await postRepository.save(data);
+    //     // if (Array.isArray(postsData)) {
+    //     //     await Promise.all(
+    //     //         postsData.map(async (postDataItem: any) => {
+    //     //             const post = new Post();
+    //     //             post.title = postDataItem.title;
+    //     //             post.content = postDataItem.content;
+    //     //             post.createdAt = postDataItem.postedAt;
+    //     //             post.createdBy = postDataItem.postedBy
+    //     //             post.tags = postDataItem.tags;
+    //     //             data.push(post);
+    //     //         }));
+    //     //     await postRepository.save(data);
     
-        // } else {
-        //     console.error('Invalid JSON data format: expected an array.');
-        // }
+    //     // } else {
+    //     //     console.error('Invalid JSON data format: expected an array.');
+    //     // }
     
-        // console.log('Data seeded successfully');
-        res.send('Data seeded successfully');
-    })
+    //     // console.log('Data seeded successfully');
+    //     res.send('Data seeded successfully');
+    // })
 
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
