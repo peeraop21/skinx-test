@@ -41,10 +41,10 @@ createConnection(dataSourceOptions).then(async (data) => {
     // Routes Post
     router.get('/posts', authenticateToken, postController.getAllPosts.bind(postController));
     router.get('/posts/:id', authenticateToken, postController.getPost.bind(postController));
-    router.post('/post', authenticateToken, postController.createPost.bind(postController));
-    router.post('/posts/json', authenticateToken, postController.createPostsByJsonFile.bind(postController));
-    router.put('/posts/:id', authenticateToken, postController.updatePost.bind(postController));
-    router.delete('/posts/:id', authenticateToken, postController.deletePost.bind(postController));
+    // router.post('/post', authenticateToken, postController.createPost.bind(postController));
+    // router.post('/posts/json', authenticateToken, postController.createPostsByJsonFile.bind(postController));
+    // router.put('/posts/:id', authenticateToken, postController.updatePost.bind(postController));
+    // router.delete('/posts/:id', authenticateToken, postController.deletePost.bind(postController));
 
     // Routes Tags
     router.get('/tags', authenticateToken, postController.getTags.bind(postController));

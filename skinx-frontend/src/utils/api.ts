@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Modal, message } from 'antd';
+import { Modal } from 'antd';
 import { logout } from '@/services/authService';
 
 const HOSTNAME = import.meta.env.VITE_SKINX_API_URL
@@ -40,9 +40,9 @@ export async function request(method: string, url: string, data: any, auth: bool
                     logout();
                     window.location.href = '/login'
                 }
-              });
+            });
             return;
-        }else{
+        } else {
             throw error;
         }
     }
