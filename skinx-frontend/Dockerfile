@@ -17,7 +17,7 @@ COPY ./skinx-frontend .
 RUN npm run build
 
 # Expose the port
-EXPOSE 4173
+EXPOSE 8080
 
 # Command to run the application
 CMD ["npm", "run", "preview"]

@@ -1,10 +1,10 @@
 import { Post } from '@/types/post';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPosts as postServiceGetPosts, getTags as postServiceGetTags } from '@/services/postService';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCount, selectPosts, selectTagOptions, setCount, setPosts, setTagOptions } from '../postSlice';
 import styles from './PostListPage.module.css';
-import { Avatar, Button, Card, Cascader, Col, Empty, Flex, Form, Input, Pagination, PaginationProps, Row, Select, Skeleton, Tag, Tooltip, Typography } from 'antd';
+import { Avatar, Card, Cascader, Col, Empty, Flex, Form, Input, Pagination, PaginationProps, Row, Select, Skeleton, Tag, Tooltip, Typography } from 'antd';
 
 import DOMPurify from 'dompurify';
 import { getColorCodeFromText } from '@/utils/style';
@@ -92,7 +92,6 @@ const PostListPage: React.FC = () => {
 
   useEffect(() => {
     const getTags = async () => {
-
       const tags = await postServiceGetTags();
       dispatch(setTagOptions(tags));
     };
@@ -112,7 +111,7 @@ const PostListPage: React.FC = () => {
     if (posts && posts.length > 0) {
       setIsLoading(false);
       generateTolalText();
-    }else if(posts == null){
+    } else if (posts == null) {
       setIsLoading(false);
     }
   }, [posts]);

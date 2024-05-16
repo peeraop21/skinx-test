@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: ./skinx-frontend/Dockerfile
     ports:
-      - "8080:4173"
+      - "8080:8080"
     environment:
       - NODE_ENV=production
     depends_on:
@@ -49,7 +49,7 @@ services:
       dockerfile: ./data/Dockerfile
     depends_on:
       - frontend
-    entrypoint: ["/bin/sh", "-c", "sleep 10 && python /app/seed_data.py && exit"]
+    entrypoint: ["/bin/sh", "-c", "sleep 15 && python /app/seed_data.py && exit"]
 
 
 volumes:
